@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Camiseta Clásica de Algodón",
+    "description": "Camiseta de manga corta y cuello redondo, fabricada con 100% algodón suave de alta calidad. Perfecta para el uso diario.",
+    "code": "TS-COT-UN-001",
+    "price": 100,
+    "status": true,
+    "stock": 150,
+    "category": "Camisetas",
+    "thumbnails": [
+      "/images/products/camiseta-blanca-frente.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Jeans Slim Fit",
+    "description": "Pantalones de mezclilla con corte slim fit, diseñados para ofrecer comodidad y estilo. Tejido elástico para un mejor ajuste.",
+    "code": "JN-SLM-AZL-M-32",
+    "price": 120,
+    "status": true,
+    "stock": 85,
+    "category": "Pantalones",
+    "thumbnails": [
+      "/images/products/jeans-slim-frente.jpg",
+      "/images/products/jeans-slim-espalda.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Vestido Midi Floral",
+    "description": "Sudadera suave y cómoda con capucha ajustable y bolsillo canguro. Ideal para el uso casual o deportivo. Mezcla de algodón y poliéster.",
+    "code": "SWT-HOOD-UNI-002",
+    "price": 80,
+    "status": true,
+    "stock": 120,
+    "category": "Vestidos",
+    "thumbnails": [
+      "/images/products/sudadera-gris-frente.jpg"
+    ]
+  }
+]
