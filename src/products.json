@@ -38,5 +38,23 @@
     "thumbnails": [
       "/images/products/sudadera-gris-frente.jpg"
     ]
+  },
+  {
+    "id": 4,
+    "title": "vestido",
+    "description": "vestido",
+    "code": "122",
+    "price": "10",
+    "stock": "10",
+    "category": "Vestido"
+  },
+  {
+    "id": 5,
+    "title": "vestido",
+    "description": "vestido",
+    "code": "122",
+    "price": "10",
+    "stock": "10",
+    "category": "Vestido"
   }
 ]
