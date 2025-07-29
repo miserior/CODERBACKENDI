@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/products",
+					"raw": "http://localhost:8080/api/products?limit=10&page=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -21,6 +21,16 @@
 					"path": [
 						"api",
 						"products"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -52,7 +62,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/products/1",
+					"raw": "http://localhost:8080/api/products/68885766bb9dd5f61c4fee95",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -61,7 +71,7 @@
 					"path": [
 						"api",
 						"products",
-						"1"
+						"68885766bb9dd5f61c4fee95"
 					]
 				}
 			},
@@ -82,7 +92,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/carts/1/product/1",
+					"raw": "http://localhost:8080/api/carts/68893950fa512edb881877ea/product/6888fbbd7720851981edc0de",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -91,9 +101,9 @@
 					"path": [
 						"api",
 						"carts",
-						"1",
+						"68893950fa512edb881877ea",
 						"product",
-						"1"
+						"6888fbbd7720851981edc0de"
 					]
 				}
 			},
@@ -106,7 +116,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\r\n    \"title\": \"Sudadera con Capucha Básica\",\r\n    \"description\": \"Sudadera suave y cómoda con capucha ajustable y bolsillo canguro. Ideal para el uso casual o deportivo. Mezcla de algodón y poliéster.\",\r\n    \"code\": \"SWT-HOOD-UNI-002\",\r\n    \"price\": 80,\r\n    \"status\": true,\r\n    \"stock\": 120,\r\n    \"category\": \"Sudaderas\",\r\n    \"thumbnails\": [\r\n      \"/images/products/sudadera-gris-frente.jpg\"\r\n    ]\r\n  }",
+					"raw": "{\r\n  \"title\": \"Zapatillas para Correr Urbanas\",\r\n  \"description\": \"Calzado deportivo diseñado para el asfalto. Ofrece una amortiguación superior y una suela de alta tracción para un rendimiento óptimo en la ciudad. Malla transpirable.\",\r\n  \"code\": \"SHOE-RUN-URB-008\",\r\n  \"price\": 150,\r\n  \"stock\": 110,\r\n  \"category\": \"Calzado\",\r\n  \"thumbnails\": \"/images/products/zapatillas-negras-lado.jpg\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -134,7 +144,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/products/3",
+					"raw": "http://localhost:8080/api/products/68885766bb9dd5f61c4fee95",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -143,7 +153,51 @@
 					"path": [
 						"api",
 						"products",
-						"3"
+						"68885766bb9dd5f61c4fee95"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProductsInCart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carts/68893950fa512edb881877ea",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"68893950fa512edb881877ea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteProductByIdInCart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carts/68893950fa512edb881877ea/products/6888fbbd7720851981edc0de",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"68893950fa512edb881877ea",
+						"products",
+						"6888fbbd7720851981edc0de"
 					]
 				}
 			},
@@ -156,7 +210,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Vestido Midi Floral\",\r\n    \"category\": \"Vestidos\"\r\n}",
+					"raw": "{\r\n    \"stock\": 450\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -164,7 +218,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/products/3",
+					"raw": "http://localhost:8080/api/products/68885766bb9dd5f61c4fee95",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -173,7 +227,7 @@
 					"path": [
 						"api",
 						"products",
-						"3"
+						"68885766bb9dd5f61c4fee95"
 					]
 				}
 			},
@@ -192,7 +246,7 @@
 					"raw": "{\r\n    \"title\": \"Vestido Midi Floral\",\r\n    \"category\": \"Vestidos\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/carts/2",
+					"raw": "http://localhost:8080/api/carts/688911be83934f590d0a78e5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -201,7 +255,62 @@
 					"path": [
 						"api",
 						"carts",
-						"2"
+						"688911be83934f590d0a78e5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCarts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Vestido Midi Floral\",\r\n    \"category\": \"Vestidos\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/carts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCartsById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Vestido Midi Floral\",\r\n    \"category\": \"Vestidos\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/carts/688911be83934f590d0a78e5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"688911be83934f590d0a78e5"
 					]
 				}
 			},
