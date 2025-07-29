@@ -12,6 +12,7 @@ formNewProduct.addEventListener("submit", (event)=>{
     });// formato 
 
     socket.emit("newProduct",productData); // emitamos los datos para el servidor
+    formNewProduct.reset(); // limpiamos
 });
 
 socket.on("productAdded", (totalProducts)=> {
@@ -26,7 +27,7 @@ socket.on("productAdded", (totalProducts)=> {
                         <h3 class="card-title">${product.title}</h3>
                         <h4 class="card-title">${product.category}</h4>
                         <p class="card-text">${product.price} USD</p>
-                        <button type="button" class="btn btn-danger delete-product-btn" data-id=${product.id}>Eliminar</button>
+                        <button type="button" class="btn btn-danger delete-product-btn" data-id=${product._id}>Eliminar</button>
                     </div>
                 </div>
             `;

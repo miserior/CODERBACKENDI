@@ -8,6 +8,8 @@ import connectMongoDB from "./config/db.js";
 import ProductManager from "./ProductManager.js";
 import CartManager from "./CartManager.js";
 import productsRouter from "./routes/products.router.js";
+import cartsRouter from "./routes/carts.router.js";
+import Product from "./models/product.model.js";
 
 // inicializa las variables de entorno 
 dotenv.config();
@@ -26,50 +28,14 @@ app.set("view engine", "handlebars"); // el motor por defecto
 app.set("views", "./src/views");
 
 app.use(express.json()); // recibir json 
-
 connectMongoDB();
 
 const productManager = new ProductManager("./src/products.json");
 const cartManager = new CartManager("./src/carts.json");
 
 app.use("/", viewsRouter);
-
-
 app.use("/api/products", productsRouter);
-
-//rutas o endpoints carts
-
-app.post("/api/carts", async (req, res) => {
-  try {
-    const carts = await cartManager.addCart();
-    res.status(201).json({ status: "success", carts });
-  } catch (error) {
-    res.status(500).json({ status: "error", message: "Error al agregar el producto" });
-  }
-});
-
-app.post("/api/carts/:cid/product/:pid", async (req, res) => {
-  try {
-    const cid = parseInt(req.params.cid);
-    const pid = parseInt(req.params.pid);
-    const quantity = parseInt(req.body.quantity);
-    const carts = await cartManager.addProductInCartById(cid, pid, quantity);
-    res.status(201).json({ status: "success", carts });
-  } catch (error) {
-    res.status(500).json({ status: "error", message: "Error al agregar el producto" });
-  }
-});
-
-app.get("/api/carts/:cid", async (req, res) => {
-  try {
-    const cid = parseInt(req.params.cid);
-    const carts = await cartManager.getProductsInCartById(cid);
-    res.status(201).json({ status: "success", products: carts });
-  } catch (error) {
-    res.status(500).json({ status: "error", message: "Error al agregar el producto" });
-  }
-});
-
+app.use("/api/carts", cartsRouter);
 
 // websockets lado del servidor
 io.on("connection", (socket) => {
@@ -77,17 +43,17 @@ io.on("connection", (socket) => {
   socket.on("newProduct", async (productData) => {
     // añadir nuevo producto 
     try {
-      await productManager.addProduct(productData);
-      const totalProducts = await productManager.getProducts(); 
-      io.emit("productAdded", totalProducts);
+      await Product.create(productData);
+      const updatedProducts = await Product.find().lean();
+      io.emit("productAdded", updatedProducts);
     } catch (error) {
       console.error("Error al incluir producto");
     }
   });
   socket.on("deleteProduct", async (productId) => {
     try {
-      await productManager.deleteProductById(productId);
-      const updatedProducts = await productManager.getProducts();
+      await Product.findByIdAndDelete(productId);
+      const updatedProducts = await Product.find().lean();
       io.emit("updateProductsList", updatedProducts);
     } catch (error) {
       console.error("Error al eliminar producto:", error);

@@ -1,13 +1,19 @@
 import express from "express";
-import ProductManager from "../ProductManager.js";
+import Product from "../models/product.model.js"; // Importar el modelo de producto
 
 const viewsRouter = express.Router();
-const productManager = new ProductManager("./src/products.json");
 
 viewsRouter.get("/", async(req, res)=> {
     try {
-        const products = await productManager.getProducts(); // aqui los guardamos
-        res.render("home",{products});
+        const {limit=10, page=1} = req.query;
+        const data = await Product.paginate({}, {limit, page, lean:true});
+        const products = data.docs;
+        delete data.docs;
+        const links = [];
+        for(let i = 1; i <= data.totalPages; i++) {
+            links.push({ text: i, link: `?limit=${limit}&page=${i}` });
+        }
+        res.render("home",{products, links});
     }
     catch(error)
     {
@@ -17,7 +23,7 @@ viewsRouter.get("/", async(req, res)=> {
 
 viewsRouter.get("/realtimeproducts", async(req, res)=> {
     try {
-        const products = await productManager.getProducts(); // aqui los guardamos
+        const products = await Product.find().lean();  // aqui los guardamos
         res.render("realTimeProducts",{products});
     }
     catch(error)
